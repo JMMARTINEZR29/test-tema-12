@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    run-on: ubuntu-latest
+    run-o: ubuntu-latest
 
     steps:
       - name: checkout repository
