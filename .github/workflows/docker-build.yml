@@ -4,9 +4,10 @@ on:
   push:
     tags: ["v*.*.*"]
 
+
 env:
   IMAGE_NAME: jmmartinezr/test-tema-12
-  SHA: ${{ github.sha }}  # Usar el SHA del commit actual
+  SHA: ${{ github.event.pull request.head.sha || github.event.after }}
   DOCKERFILE_PATH: Dockerfile
 
 jobs:
@@ -14,24 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: checkout repository
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}  # Usar la referencia de la etiqueta (tag) que activó el flujo de trabajo
+          ref: ${{ env.SHA }}
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Log into DockerHub
+      - name: Log into registry
         uses: docker/login-action@v2
-        with:
-          username: jmmartinezr
+        with: 
+          username: docker_pat_jmmartinezr
           password: ${{ secrets.MI_PTA_DOCKERHUB }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ${{ env.DOCKERFILE_PATH }}
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ github.ref_name }}  # Usar el nombre del tag para versionar la imagen
