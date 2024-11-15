@@ -2,13 +2,13 @@ name: docker-build
 
 on:
   push:
-    banches: ["main"]
+    #banches: ["Development"]
     tags: ["v*.*.*"]
 
 
 env:
   IMAGE_NAME: jmmartinezr/test-tema-12
-  SHA: ${{github.event.pull request.head.sha || github.event.after}}
+  SHA: ${{ github.event.pull request.head.sha || github.event.after }}
   DOCKERFILE_PATH: Dockerfile
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
         uses: docker/login-action@v2
         with: 
           username: jmmartinezr
-          password: ${{secrets MI PTA DOCKERHUB}}
+          password: ${{ secrets MI PTA DOCKERHUB }}
