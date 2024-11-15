@@ -2,7 +2,7 @@ name: docker-build
 
 on:
   push:
-    #banches: ["Development"]
+    #banches: ["Main"]
     tags: ["v*.*.*"]
 
 
