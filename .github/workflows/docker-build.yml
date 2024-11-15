@@ -7,7 +7,7 @@ on:
 
 env:
   IMAGE_NAME: jmmartinezr/test-tema-12
-  SHA: ${{ github.event.pull request.head.sha || github.event.after }}
+  SHA: ${{ github.sha }}
   DOCKERFILE_PATH: Dockerfile
 
 jobs:
@@ -26,5 +26,5 @@ jobs:
       - name: Log into registry
         uses: docker/login-action@v2
         with: 
-          username: docker_pat_jmmartinezr
+          username: jmmartinezr
           password: ${{ secrets.MI_PTA_DOCKERHUB }}
