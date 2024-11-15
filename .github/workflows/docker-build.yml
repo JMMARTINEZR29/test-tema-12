@@ -8,7 +8,7 @@ on:
 
 env:
   IMAGE_NAME: jmmartinezr/test-tema-12
-  SHA: ${{ github.sha }}
+  SHA: ${{ github.event.pull request.head.sha || github.event.after }}
   DOCKERFILE_PATH: Dockerfile
 
 jobs:
