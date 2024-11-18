@@ -6,7 +6,7 @@ on:
 
 
 env:
-  IMAGE_NAME: JMMARTINEZR29/test-tema-12
+  IMAGE_NAME: jmmartinezr/test-tema-12
   SHA: ${{ github.event.pull_request.head.sha || github.event.after }}
   DOCKERFILE_PATH: Dockerfile
 
